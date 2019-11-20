@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import Pages.ExpediaHomePage;
 import Utilities.DriverFactory;
 
 public class ExpediaBooking {
@@ -23,19 +24,22 @@ public class ExpediaBooking {
 	@Test
 	public void hotelReservation() {
 		
+		ExpediaHomePage homepage = new ExpediaHomePage(driver);
+		
 		//1. Search
-		driver.findElement(By.id("tab-hotel-tab-hp")).click();
-		driver.findElement(By.id("hotel-destination-hp-hotel")).clear();
-		driver.findElement(By.id("hotel-destination-hp-hotel")).sendKeys(hotelDestinationCity);
-		driver.findElement(By.id("hotel-checkin-hp-hotel")).clear();
-		driver.findElement(By.id("hotel-checkin-hp-hotel")).sendKeys(checkInDate);
-		driver.findElement(By.id("hotel-checkout-hp-hotel")).clear();
-		driver.findElement(By.id("hotel-checkout-hp-hotel")).sendKeys(checkOutDate);
-		driver.findElement(By.cssSelector("button[type='button'][class='trigger-utility menu-trigger btn-utility btn-secondary dropdown-toggle theme-standard pin-left menu-arrow gcw-component gcw-traveler-amount-select gcw-component-initialized']")).click();
-		driver.findElement(By.xpath("/html/body/meso-native-marquee/section/div/div/div[1]/section/div/div[2]/div[2]/section[2]/form/div[5]/div[3]/div/ul/li/div/div/div[1]/div[2]/div[2]/button")).click();
-		driver.findElement(By.xpath("/html/body/meso-native-marquee/section/div/div/div[1]/section/div/div[2]/div[2]/section[2]/form/div[5]/div[3]/div/ul/li/div/div/div[1]/div[3]/div[1]/div[4]/button")).click();
-		new Select(driver.findElement(By.cssSelector("select[type='select'][class='gcw-storeable gcw-toggles-field-by-value gcw-child-age-select']"))).selectByValue(childAge);
-		driver.findElement(By.cssSelector("button[type='submit'][data-gcw-change-submit-text='Search']")).click();
+		homepage.clickOnHotelButton();
+		homepage.clearDestinationTextBox(); 
+		homepage.sendKeysDestinationTextBox(hotelDestinationCity);
+		homepage.clearCheckInTextBox(); 
+		homepage.sendKeysCheckInTextBox(checkInDate);
+		homepage.clearCheckOutTextBox(); 
+		homepage.sendKeysCheckOutTextBox(checkOutDate);
+//		homepage.clickOnTravelersButton();
+//		homepage.clickOnLessAdult();
+//		homepage.clickOnPlusChild();
+//		homepage.selectChild1Age(childAge);
+		homepage.clickOnSearchButton();
+		
 		//2. Modify the search results page, give criteria
 		
 		
