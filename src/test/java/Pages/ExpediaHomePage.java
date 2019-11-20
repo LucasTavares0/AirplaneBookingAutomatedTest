@@ -11,8 +11,8 @@ public class ExpediaHomePage {
 	
 	WebDriver driver;
 	
-	//WebElements declaration
 	
+	//WebElements Declaration
 	@FindBy(id = "tab-hotel-tab-hp")
 	WebElement HotelButton;
 	
@@ -85,6 +85,7 @@ public class ExpediaHomePage {
 		SearchButton.click();
 	}
 
+	
 	
 	//Constructor
 	public ExpediaHomePage(WebDriver driver) {
