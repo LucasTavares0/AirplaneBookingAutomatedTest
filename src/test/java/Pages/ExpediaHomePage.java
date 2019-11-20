@@ -3,22 +3,46 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class ExpediaHomePage {
 	
-	//WebElements declaration
 	WebDriver driver;
+	
+	//WebElements declaration
+	
+	@FindBy(id = "tab-hotel-tab-hp")
 	WebElement HotelButton;
+	
+	@FindBy(id = "hotel-destination-hp-hotel")
 	WebElement DestinationTextBox;
+	
+	@FindBy(id = "hotel-checkin-hp-hotel")
 	WebElement CheckInTextBox;
+	
+	@FindBy(id = "hotel-checkout-hp-hotel")
 	WebElement CheckOutTextBox;
+	
+	@FindBy(css = "button[type='button'][class='trigger-utility menu-trigger btn-utility btn-secondary dropdown-toggle theme-standard pin-left menu-arrow gcw-component gcw-traveler-amount-select gcw-component-initialized']")
 	WebElement TravelersButton;
+	
+	@FindBy(xpath = "/html/body/meso-native-marquee/section/div/div/div[1]/section/div/div[2]/div[2]/section[2]/form/div[5]/div[3]/div/ul/li/div/div/div[1]/div[2]/div[2]/button")
 	WebElement TravelerAdultLessButton;
+	
+	@FindBy(xpath = "/html/body/meso-native-marquee/section/div/div/div[1]/section/div/div[2]/div[2]/section[2]/form/div[5]/div[3]/div/ul/li/div/div/div[1]/div[3]/div[1]/div[4]/button")
 	WebElement TravelerChildPlusButton;
+	
+	@FindBy(css = "select[type='select'][data-gcw-storeable-name='gcw-child-age-1-1']")
 	Select Child1AgeSelect;
+	
+	@FindBy(css = "select[type='select'][data-gcw-storeable-name='gcw-child-age-1-2']")
 	Select Child2AgeSelect;
+	
+	@FindBy(css = "button[type='submit'][data-gcw-change-submit-text='Search']")
 	WebElement SearchButton;
+	
 	
 	//Action Methods
 	public void clickOnHotelButton() {
@@ -44,7 +68,6 @@ public class ExpediaHomePage {
 	}
 	public void clickOnTravelersButton() {
 		TravelersButton.click();
-		findTravelersElements();
 	}
 	public void clickOnLessAdult() {
 		TravelerAdultLessButton.click();
@@ -61,29 +84,12 @@ public class ExpediaHomePage {
 	public void clickOnSearchButton() {
 		SearchButton.click();
 	}
-	
-	//WebElements INIT
-	public void findInitialElementsLocation() {
-		
-		this.HotelButton = driver.findElement(By.id("tab-hotel-tab-hp"));
-		this.DestinationTextBox = driver.findElement(By.id("hotel-destination-hp-hotel"));
-		this.CheckInTextBox = driver.findElement(By.id("hotel-checkin-hp-hotel"));
-		this.CheckOutTextBox = driver.findElement(By.id("hotel-checkout-hp-hotel"));
-		this.TravelersButton = driver.findElement(By.cssSelector("button[type='button'][class='trigger-utility menu-trigger btn-utility btn-secondary dropdown-toggle theme-standard pin-left menu-arrow gcw-component gcw-traveler-amount-select gcw-component-initialized']"));
 
-		this.SearchButton = driver.findElement(By.cssSelector("button[type='submit'][data-gcw-change-submit-text='Search']"));
-	}
-	public void findTravelersElements() {
-		this.TravelerAdultLessButton = driver.findElement(By.xpath("/html/body/meso-native-marquee/section/div/div/div[1]/section/div/div[2]/div[2]/section[2]/form/div[5]/div[3]/div/ul/li/div/div/div[1]/div[2]/div[2]/button"));
-		this.TravelerChildPlusButton = driver.findElement(By.xpath("/html/body/meso-native-marquee/section/div/div/div[1]/section/div/div[2]/div[2]/section[2]/form/div[5]/div[3]/div/ul/li/div/div/div[1]/div[3]/div[1]/div[4]/button"));
-		this.Child1AgeSelect = new Select(driver.findElement(By.cssSelector("select[type='select'][data-gcw-storeable-name='gcw-child-age-1-1']")));
-		this.Child2AgeSelect = new Select(driver.findElement(By.cssSelector("select[type='select'][data-gcw-storeable-name='gcw-child-age-1-2']")));
-	}
 	
 	//Constructor
 	public ExpediaHomePage(WebDriver driver) {
 		
 		this.driver = driver;
-		findInitialElementsLocation();
+		PageFactory.initElements(driver, this);
 	}
 }
